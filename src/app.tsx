@@ -1,8 +1,9 @@
 import { Text, Window, hot, View } from '@nodegui/react-nodegui'
 import React from 'react'
-import { QIcon } from '@nodegui/nodegui'
+import { QIcon, WindowType } from '@nodegui/nodegui'
 import path from 'path'
-import nodeguiIcon from '../assets/nodegui.jpg'
+import nodeguiIcon from 'assets/nodegui.jpg'
+import HomePage from 'pages/home'
 
 const minSize = { width: 1000, height: 670 }
 const winIcon = new QIcon(path.resolve(__dirname, nodeguiIcon))
@@ -10,12 +11,15 @@ class App extends React.Component {
   render() {
     return (
       <Window
+        windowFlags={{ [WindowType.FramelessWindowHint]: false }}
         windowIcon={winIcon}
         windowTitle="网易云音乐"
         minSize={minSize}
         styleSheet={styleSheet}
       >
-        <View style={containerStyle}></View>
+        <View style={containerStyle}>
+          <HomePage></HomePage>
+        </View>
       </Window>
     )
   }

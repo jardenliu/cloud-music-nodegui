@@ -6,6 +6,8 @@
     "@nodegui/nodegui": "^0.18.2",
     "@nodegui/react-nodegui": "^0.6.1",
     "cra-template-react-nodegui": "0.0.3",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"

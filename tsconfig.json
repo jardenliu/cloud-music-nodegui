@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "target": "es2016",
     "module": "esnext",
     "jsx": "react",
@@ -8,6 +9,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": "./src",
+    "rootDirs": ["./src"],
     "allowJs": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
@@ -17,5 +20,5 @@
     "noEmit": true,
     "typeRoots": ["node_modules/@types", "./types"]
   },
-  "include": ["**/*"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "types/**/*.ts"]
 }

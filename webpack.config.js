@@ -1,16 +1,18 @@
-const path = require("path");
-const webpack = require("webpack");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require('path')
+const webpack = require('webpack')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+const resolve = (...paths) => path.resolve(__dirname, ...paths)
 
 module.exports = (env, argv) => {
   const config = {
-    mode: "production",
-    entry: ["./src/index.tsx"],
-    target: "node",
+    mode: 'production',
+    entry: ['./src/index.tsx'],
+    target: 'node',
     output: {
-      path: path.resolve(__dirname, "dist"),
-      filename: "index.js"
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'index.js'
     },
     node: {
       __dirname: true,
@@ -22,21 +24,21 @@ module.exports = (env, argv) => {
           test: /\.(j|t)sx?$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: { cacheDirectory: true, cacheCompression: false }
           }
         },
         {
           test: /\.(png|jpe?g|gif|svg|bmp)$/i,
-          use: [{ loader: "file-loader" }]
+          use: [{ loader: 'file-loader' }]
         },
         {
           test: /\.node/i,
           use: [
             {
-              loader: "native-addon-loader",
+              loader: 'native-addon-loader',
               options: {
-                name: "[name]-[hash].[ext]"
+                name: '[name]-[hash].[ext]'
               }
             }
           ]
@@ -45,21 +47,25 @@ module.exports = (env, argv) => {
     },
     plugins: [],
     resolve: {
-      extensions: [".tsx", ".ts", ".js", ".jsx", ".json"]
+      modules: [resolve('src'), resolve('node_modules')],
+      alias: {
+        assets: resolve('assets')
+      },
+      extensions: ['.tsx', '.ts', '.js', '.jsx', '.json']
     }
-  };
+  }
 
-  if (argv.mode === "development") {
-    config.mode = "development";
-    config.plugins.push(new webpack.HotModuleReplacementPlugin());
-    config.plugins.push(new ForkTsCheckerWebpackPlugin());
-    config.devtool = "source-map";
-    config.watch = true;
-    config.entry.unshift("webpack/hot/poll?100");
+  if (argv.mode === 'development') {
+    config.mode = 'development'
+    config.plugins.push(new webpack.HotModuleReplacementPlugin())
+    config.plugins.push(new ForkTsCheckerWebpackPlugin())
+    config.devtool = 'source-map'
+    config.watch = true
+    config.entry.unshift('webpack/hot/poll?100')
   }
 
   if (argv.p) {
-    config.plugins.push(new CleanWebpackPlugin());
+    config.plugins.push(new CleanWebpackPlugin())
   }
-  return config;
-};
+  return config
+}
