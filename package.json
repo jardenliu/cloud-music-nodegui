@@ -5,6 +5,7 @@
   "dependencies": {
     "@nodegui/nodegui": "^0.18.2",
     "@nodegui/react-nodegui": "^0.6.1",
+    "NeteaseCloudMusicApi": "^3.25.4",
     "cra-template-react-nodegui": "0.0.3",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.1",

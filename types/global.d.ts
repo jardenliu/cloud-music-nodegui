@@ -25,3 +25,7 @@ declare interface NodeModule {
     data: any
   }
 }
+
+declare interface NodeRequire {
+  context: any
+}
