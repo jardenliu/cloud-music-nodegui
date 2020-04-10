@@ -12,6 +12,7 @@ const pageStyle = `
 
 const containerStyle = `
   flex: 1;
+  background: #fff;
   flex-direction: row;
 `
 

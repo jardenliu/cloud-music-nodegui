@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {
   WidgetEventTypes,
+  WindowState,
   NativeElement,
   QMouseEvent,
   QMainWindow
@@ -11,6 +12,8 @@ import { observer } from 'mobx-react'
 const containerStyle = `
   height: 52px;
   background-color: #ff0c0c;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 `
 
 export interface IProps {
@@ -44,7 +47,17 @@ const Topbar = observer((props: IProps) => {
   }
 
   const handleDbClick = (e: NativeElement | undefined) => {
-    console.log('maximize')
+    const { current } = props.window
+    if (!current) return
+    const windowState = current.windowState()
+
+    if (windowState === WindowState.WindowMaximized) {
+      current.showNormal()
+    }
+
+    if (windowState === WindowState.WindowNoState) {
+      current.showMaximized()
+    }
   }
 
   return (

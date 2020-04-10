@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@nodegui/nodegui": "^0.18.2",
+    "@nodegui/os-utils": "^1.1.2",
     "@nodegui/react-nodegui": "^0.6.1",
     "NeteaseCloudMusicApi": "^3.25.4",
     "cra-template-react-nodegui": "0.0.3",
@@ -53,6 +54,7 @@
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@nodegui/devtools": "^1.0.1",
     "@nodegui/packer": "^1.4.0",
     "@types/jest": "^25.2.1",
     "babel-loader": "^8.1.0",
