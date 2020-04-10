@@ -4,6 +4,7 @@ import Topbar from 'components/topbar'
 import Sidebar from 'components/sidebar'
 import Playbar from 'components/playbar'
 import { observer } from 'mobx-react'
+import { QMainWindow } from '@nodegui/nodegui'
 
 const pageStyle = `
   flex: 1;
@@ -19,10 +20,14 @@ const routerViewStyle = `
   background-color: #f5f5f5;
 `
 
-const HomePage = observer(() => {
+export interface IProps {
+  window: React.RefObject<QMainWindow>
+}
+
+const HomePage = observer((props: IProps) => {
   return (
     <View style={pageStyle}>
-      <Topbar></Topbar>
+      <Topbar window={props.window}></Topbar>
       <View style={containerStyle}>
         <Sidebar></Sidebar>
         <View style={routerViewStyle}>

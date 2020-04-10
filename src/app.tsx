@@ -1,6 +1,6 @@
 import { Text, Window, hot, View } from '@nodegui/react-nodegui'
 import React from 'react'
-import { QIcon, WindowType } from '@nodegui/nodegui'
+import { QIcon, WindowType, QMainWindow } from '@nodegui/nodegui'
 import path from 'path'
 import nodeguiIcon from 'assets/nodegui.jpg'
 import HomePage from 'pages/home'
@@ -8,17 +8,24 @@ import HomePage from 'pages/home'
 const minSize = { width: 1000, height: 670 }
 const winIcon = new QIcon(path.resolve(__dirname, nodeguiIcon))
 class App extends React.Component {
+  private readonly windowRef: React.RefObject<QMainWindow>
+
+  constructor(props: any) {
+    super(props)
+    this.windowRef = React.createRef<QMainWindow>()
+  }
   render() {
     return (
       <Window
-        windowFlags={{ [WindowType.FramelessWindowHint]: false }}
+        ref={this.windowRef}
+        windowFlags={{ [WindowType.FramelessWindowHint]: true }}
         windowIcon={winIcon}
         windowTitle="网易云音乐"
         minSize={minSize}
         styleSheet={styleSheet}
       >
         <View style={containerStyle}>
-          <HomePage></HomePage>
+          <HomePage window={this.windowRef}></HomePage>
         </View>
       </Window>
     )
