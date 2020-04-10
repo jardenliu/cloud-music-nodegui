@@ -23,30 +23,45 @@ export interface IProps {
 const Topbar = observer((props: IProps) => {
   const initialState = {
     x: 0,
-    y: 0
+    y: 0,
+    isDragging: false
   }
 
   const [state, setState] = useState(initialState)
 
   const dragStart = (e: NativeElement | undefined) => {
     if (!e) return
+
     const event = new QMouseEvent(e)
-    setState({ x: event.x(), y: event.y() })
+    setState({ x: event.x(), y: event.y(), isDragging: true })
   }
 
   const dragMove = (e: NativeElement | undefined) => {
-    if (!e) return
+    const { current } = props.window
+    if (!e || !current || !state.isDragging) return
     const event = new QMouseEvent(e)
+    const windowState = current.windowState()
+    if (windowState === WindowState.WindowMaximized) {
+      current.showNormal()
+      const halfWidth = current.geometry().width() / 2
+      const moveX = event.x() - halfWidth
+      const moveY = 0
+      setState({ x: halfWidth, y: event.y(), isDragging: true })
+      return current.move(moveX, moveY)
+    }
+
     const moveX = event.globalX() - state.x
     const moveY = event.globalY() - state.y
-    props.window.current!.move(moveX, moveY)
+    current.move(moveX, moveY)
   }
 
   const dragEnd = (e: NativeElement | undefined) => {
     if (!e) return
+    setState({ ...state, isDragging: false })
   }
 
   const handleDbClick = (e: NativeElement | undefined) => {
+    if (!e) return
     const { current } = props.window
     if (!current) return
     const windowState = current.windowState()
