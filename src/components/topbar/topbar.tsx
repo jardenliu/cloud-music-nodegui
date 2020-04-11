@@ -8,6 +8,7 @@ import {
 } from '@nodegui/nodegui'
 import { Text, View } from '@nodegui/react-nodegui'
 import { observer } from 'mobx-react'
+const OSUtils = require('node-os-utils')
 
 const containerStyle = `
   height: 52px;
@@ -41,7 +42,10 @@ const Topbar = observer((props: IProps) => {
     if (!e || !current || !state.isDragging) return
     const event = new QMouseEvent(e)
     const windowState = current.windowState()
-    if (windowState === WindowState.WindowMaximized) {
+    if (
+      windowState === WindowState.WindowMaximized &&
+      OSUtils.os.platform() !== 'darwin'
+    ) {
       current.showNormal()
       const halfWidth = current.geometry().width() / 2
       const moveX = event.x() - halfWidth
