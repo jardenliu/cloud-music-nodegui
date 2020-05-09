@@ -4,29 +4,32 @@ import {
   QIcon,
   WindowType,
   QMainWindow,
-  WidgetAttribute
+  WidgetAttribute,
+  NativeElement
 } from '@nodegui/nodegui'
 import path from 'path'
 import nodeguiIcon from 'assets/nodegui.jpg'
 import HomePage from 'pages/home'
+import { isMac } from 'utils/OS'
+import { setTitleBarStyle } from '@nodegui/plugin-title-bar'
 
 const minSize = { width: 1000, height: 670 }
 const winIcon = new QIcon(path.resolve(__dirname, nodeguiIcon))
 
 class App extends React.Component {
-  private readonly windowRef: React.RefObject<QMainWindow>
+  private readonly ref: React.RefObject<QMainWindow>
 
   constructor(props: any) {
     super(props)
-    this.windowRef = React.createRef<QMainWindow>()
+    this.ref = React.createRef<QMainWindow>()
   }
   render() {
     return (
       <Window
         attributes={{ [WidgetAttribute.WA_TranslucentBackground]: true }}
-        ref={this.windowRef}
+        ref={this.ref}
         windowFlags={{
-          [WindowType.FramelessWindowHint]: true
+          [WindowType.FramelessWindowHint]: !isMac()
           // [WindowType.NoDropShadowWindowHint]: false
         }}
         windowIcon={winIcon}
@@ -35,10 +38,19 @@ class App extends React.Component {
         style={windowStyle}
       >
         <View style={containerStyle}>
-          <HomePage window={this.windowRef}></HomePage>
+          <HomePage window={this.ref}></HomePage>
         </View>
       </Window>
     )
+  }
+
+  componentDidMount() {
+    if (isMac()) {
+      setTitleBarStyle(
+        ((this.ref.current as unknown) as { native: NativeElement }).native,
+        'hiddenInset'
+      )
+    }
   }
 }
 
