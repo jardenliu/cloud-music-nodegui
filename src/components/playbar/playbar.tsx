@@ -2,17 +2,23 @@ import React from 'react'
 import { Text, View } from '@nodegui/react-nodegui'
 import { observer } from 'mobx-react'
 
-const containerStyle = `
-  height: 48px;
-  border-top: 1px solid #e1e1e1;
-  background: #fff;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-`
+import { create } from 'utils/style'
+
+const style = create({
+  view: {
+    height: 48,
+    backgroundColor: '#fff',
+    border: '1px solid #e1e1e1',
+    borderTop: '2px solid #e1e1e1',
+    borderBottom: '2px solid #e1e1e1',
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5
+  }
+})
 
 const Playbar = observer(() => {
   return (
-    <View style={containerStyle}>
+    <View style={style.view}>
       <Text>playbar</Text>
     </View>
   )

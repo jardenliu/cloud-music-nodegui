@@ -6,20 +6,23 @@ import Playbar from 'components/playbar'
 import { observer } from 'mobx-react'
 import { QMainWindow } from '@nodegui/nodegui'
 
-const pageStyle = `
-  flex: 1;
-`
+import { create } from 'utils/style'
 
-const containerStyle = `
-  flex: 1;
-  background: #fff;
-  flex-direction: row;
-`
-
-const routerViewStyle = `
-  flex: 1;
-  background-color: #f5f5f5;
-`
+const style = create({
+  page: {
+    flex: 1
+  },
+  view: {
+    flex: 1,
+    backgroundColor: '#fff',
+    flexDirection: 'row'
+  },
+  routerView: {
+    flex: 1,
+    borderRight: '1px solid #e1e1e1',
+    backgroundColor: '#f5f5f5'
+  }
+})
 
 export interface IProps {
   window: React.RefObject<QMainWindow>
@@ -27,11 +30,11 @@ export interface IProps {
 
 const HomePage = observer((props: IProps) => {
   return (
-    <View style={pageStyle}>
+    <View style={style.page}>
       <Topbar window={props.window}></Topbar>
-      <View style={containerStyle}>
+      <View style={style.view}>
         <Sidebar></Sidebar>
-        <View style={routerViewStyle}>
+        <View style={style.routerView}>
           <Text>router view</Text>
         </View>
       </View>

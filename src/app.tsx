@@ -1,4 +1,4 @@
-import { Text, Window, hot, View } from '@nodegui/react-nodegui'
+import { Window, hot, View } from '@nodegui/react-nodegui'
 import React from 'react'
 import {
   QIcon,
@@ -11,6 +11,7 @@ import path from 'path'
 import nodeguiIcon from 'assets/nodegui.jpg'
 import HomePage from 'pages/home'
 import { isMac } from 'utils/OS'
+import { create, createSheet } from 'utils/style'
 import { setTitleBarStyle } from '@nodegui/plugin-title-bar'
 
 const minSize = { width: 1000, height: 670 }
@@ -28,16 +29,17 @@ class App extends React.Component {
       <Window
         attributes={{ [WidgetAttribute.WA_TranslucentBackground]: true }}
         ref={this.ref}
+        id="window"
         windowFlags={{
-          [WindowType.FramelessWindowHint]: !isMac()
+          [WindowType.FramelessWindowHint]: !isMac
           // [WindowType.NoDropShadowWindowHint]: false
         }}
         windowIcon={winIcon}
         windowTitle="网易云音乐"
         minSize={minSize}
-        style={windowStyle}
+        styleSheet={styleSheet}
       >
-        <View style={containerStyle}>
+        <View style={style.container}>
           <HomePage window={this.ref}></HomePage>
         </View>
       </Window>
@@ -45,7 +47,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    if (isMac()) {
+    if (isMac) {
       setTitleBarStyle(
         ((this.ref.current as unknown) as { native: NativeElement }).native,
         'hiddenInset'
@@ -54,27 +56,24 @@ class App extends React.Component {
   }
 }
 
-const windowStyle = `
-  border-radius: 10px;
-`
-
-const containerStyle = `
-  flex: 1; 
-`
-
-const styleSheet = `
-  #welcome-text {
-    font-size: 24px;
-    padding-top: 20px;
-    qproperty-alignment: 'AlignHCenter';
-    font-family: 'sans-serif';
+const style = create({
+  container: {
+    flex: 1
   }
+})
 
-  #step-1, #step-2 {
-    font-size: 18px;
-    padding-top: 10px;
-    padding-horizontal: 20px;
+const styleSheet = createSheet({
+  '#window': {
+    borderRadius: 10
+  },
+  '#topbar': {
+    borderLeft: '1px solid #e1e1e1',
+    borderRight: '1px solid #e1e1e1',
+    borderTop: '1px solid #e1e1e1'
+  },
+  '#step-1, #step-2': {
+    paddingTop: 9
   }
-`
+})
 
 export default hot(App)

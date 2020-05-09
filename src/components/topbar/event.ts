@@ -20,10 +20,10 @@ export default function TopbarEvent(store: Store, props: IProps) {
     if (!e || !current || !state.isDragging) return
     const event = new QMouseEvent(e)
     const windowState = current.windowState()
-    if (windowState === WindowState.WindowMaximized && !isMac()) {
+    if (windowState === WindowState.WindowMaximized && !isMac) {
       current.showNormal()
 
-      if (isLinux()) {
+      if (isLinux) {
         setTimeout(() => {
           const halfWidth = current.geometry().width() / 2
           const moveX = event.x() - halfWidth
@@ -34,7 +34,7 @@ export default function TopbarEvent(store: Store, props: IProps) {
         return
       }
 
-      if (isWin()) {
+      if (isWin) {
         const halfWidth = current.geometry().width() / 2
         const moveX = event.x() - halfWidth
         const moveY = 0

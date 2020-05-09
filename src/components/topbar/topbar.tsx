@@ -3,13 +3,19 @@ import { WidgetEventTypes, QMainWindow } from '@nodegui/nodegui'
 import { Text, View } from '@nodegui/react-nodegui'
 import { observer } from 'mobx-react'
 import topbarEvent from './event'
+import { create } from 'utils/style'
 
-const containerStyle = `
-  height: 52px;
-  background-color: #ff0c0c;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-`
+const style = create({
+  view: {
+    height: 52,
+    backgroundColor: '#ff0c0c',
+    borderLeft: '1px solid #da0000',
+    borderRight: '1px solid #da0000',
+    borderTop: '1px solid #da0000',
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5
+  }
+})
 
 export interface IProps {
   window: React.RefObject<QMainWindow>
@@ -33,7 +39,8 @@ const Topbar = observer((props: IProps) => {
 
   return (
     <View
-      style={containerStyle}
+      id="topbar"
+      style={style.view}
       on={{
         [WidgetEventTypes.MouseButtonPress]: event.dragStart,
         [WidgetEventTypes.MouseMove]: event.dragMove,

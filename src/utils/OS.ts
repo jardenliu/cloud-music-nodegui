@@ -1,13 +1,6 @@
 const OSUtils = require('node-os-utils')
 
-export const isMac = () => {
-  return OSUtils.os.platform() === 'darwin'
-}
-
-export const isLinux = () => {
-  return OSUtils.os.platform() === 'linux'
-}
-
-export const isWin = () => {
-  return OSUtils.os.platform() === 'win32'
-}
+export const platform = OSUtils.os.platform()
+export const isMac = platform === 'darwin'
+export const isLinux = platform === 'linux'
+export const isWin = platform === 'win32'

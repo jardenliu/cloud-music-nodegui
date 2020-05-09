@@ -5,6 +5,7 @@ import { observer } from 'mobx-react'
 const containerStyle = `
   width: 200px;
   border-right: 1px solid #e1e1e1;
+  border-left: 1px solid #e1e1e1;
 `
 
 const Sidebar = observer(() => {
