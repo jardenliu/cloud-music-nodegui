@@ -12,7 +12,7 @@ import nodeguiIcon from 'assets/nodegui.jpg'
 import HomePage from 'pages/home'
 import { isMac } from 'utils/OS'
 import { create, createSheet } from 'utils/style'
-import { setTitleBarStyle } from '@nodegui/plugin-title-bar'
+import { setTitleBarStyle } from 'nodegui-plugin-mac-title-bar'
 
 const minSize = { width: 1000, height: 670 }
 const winIcon = new QIcon(path.resolve(__dirname, nodeguiIcon))
@@ -50,7 +50,7 @@ class App extends React.Component {
     if (isMac) {
       setTitleBarStyle(
         ((this.ref.current as unknown) as { native: NativeElement }).native,
-        'hiddenInset'
+        'hidden'
       )
     }
   }
@@ -66,11 +66,7 @@ const styleSheet = createSheet({
   '#window': {
     borderRadius: 10
   },
-  '#topbar': {
-    borderLeft: '1px solid #e1e1e1',
-    borderRight: '1px solid #e1e1e1',
-    borderTop: '1px solid #e1e1e1'
-  },
+
   '#step-1, #step-2': {
     paddingTop: 9
   }

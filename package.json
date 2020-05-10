@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@nodegui/nodegui": "http://master-release.nodegui.org",
-    "@nodegui/plugin-title-bar": "0.0.1",
+    "nodegui-plugin-mac-title-bar": "0.0.1",
     "@nodegui/react-nodegui": "^0.6.1",
     "NeteaseCloudMusicApi": "^3.25.4",
     "cra-template-react-nodegui": "0.0.3",

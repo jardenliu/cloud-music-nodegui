@@ -5,6 +5,7 @@ import Sidebar from 'components/sidebar'
 import Playbar from 'components/playbar'
 import { observer } from 'mobx-react'
 import { QMainWindow } from '@nodegui/nodegui'
+import { isMac } from 'utils/OS'
 
 import { create } from 'utils/style'
 
@@ -19,7 +20,7 @@ const style = create({
   },
   routerView: {
     flex: 1,
-    borderRight: '1px solid #e1e1e1',
+    borderRight: !isMac ? '1px solid #e1e1e1' : 'none',
     backgroundColor: '#f5f5f5'
   }
 })

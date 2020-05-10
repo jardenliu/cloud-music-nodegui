@@ -1,16 +1,22 @@
 import React from 'react'
 import { Text, View } from '@nodegui/react-nodegui'
 import { observer } from 'mobx-react'
+import { isMac } from 'utils/OS'
+import { create } from 'utils/style'
 
-const containerStyle = `
-  width: 200px;
-  border-right: 1px solid #e1e1e1;
-  border-left: 1px solid #e1e1e1;
-`
-
+const style = create({
+  view: {
+    width: 200,
+    borderLeft: !isMac ? '1px solid #e1e1e1' : 'none',
+    borderRight: '1px solid #e1e1e1'
+  }
+})
+console.log('====================================')
+console.log(style)
+console.log('====================================')
 const Sidebar = observer(() => {
   return (
-    <View style={containerStyle}>
+    <View style={style.view}>
       <Text>sidebar</Text>
     </View>
   )

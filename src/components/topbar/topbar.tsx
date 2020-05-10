@@ -4,14 +4,15 @@ import { Text, View } from '@nodegui/react-nodegui'
 import { observer } from 'mobx-react'
 import topbarEvent from './event'
 import { create } from 'utils/style'
+import { isMac } from 'utils/OS'
 
 const style = create({
   view: {
     height: 52,
     backgroundColor: '#ff0c0c',
-    borderLeft: '1px solid #da0000',
-    borderRight: '1px solid #da0000',
-    borderTop: '1px solid #da0000',
+    borderLeft: !isMac ? '1px solid #da0000' : 'none',
+    borderRight: !isMac ? '1px solid #da0000' : 'none',
+    borderTop: !isMac ? '1px solid #da0000' : 'none',
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5
   }
