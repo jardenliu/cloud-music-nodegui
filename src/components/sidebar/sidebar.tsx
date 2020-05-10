@@ -11,9 +11,6 @@ const style = create({
     borderRight: '1px solid #e1e1e1'
   }
 })
-console.log('====================================')
-console.log(style)
-console.log('====================================')
 const Sidebar = observer(() => {
   return (
     <View style={style.view}>

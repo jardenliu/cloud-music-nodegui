@@ -12,7 +12,7 @@ import nodeguiIcon from 'assets/nodegui.jpg'
 import HomePage from 'pages/home'
 import { isMac } from 'utils/OS'
 import { create, createSheet } from 'utils/style'
-import { setTitleBarStyle } from 'nodegui-plugin-mac-title-bar'
+import { setTitleBarStyle } from '@nodegui/plugin-title-bar'
 
 const minSize = { width: 1000, height: 670 }
 const winIcon = new QIcon(path.resolve(__dirname, nodeguiIcon))
