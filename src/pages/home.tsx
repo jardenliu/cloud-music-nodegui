@@ -6,6 +6,7 @@ import Playbar from 'components/playbar'
 import { observer } from 'mobx-react'
 import { QMainWindow } from '@nodegui/nodegui'
 import { isMac } from 'utils/OS'
+import Icon from 'components/icon'
 
 import { create } from 'utils/style'
 
@@ -37,6 +38,7 @@ const HomePage = observer((props: IProps) => {
         <Sidebar></Sidebar>
         <View style={style.routerView}>
           <Text>router view</Text>
+          <Icon icon="remove"></Icon>
         </View>
       </View>
       <Playbar></Playbar>

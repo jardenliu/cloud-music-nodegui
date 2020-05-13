@@ -4,6 +4,7 @@ import {
   QIcon,
   WindowType,
   QMainWindow,
+  QFontDatabase,
   WidgetAttribute,
   NativeElement
 } from '@nodegui/nodegui'
@@ -23,6 +24,7 @@ class App extends React.Component {
   constructor(props: any) {
     super(props)
     this.ref = React.createRef<QMainWindow>()
+    QFontDatabase.addApplicationFont('assets/iconfont.ttf')
   }
   render() {
     return (
