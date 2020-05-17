@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@nodegui/nodegui": "http://master-release.nodegui.org",
+    "@nodegui/nodegui": "^0.20.0",
+    "@nodegui/plugin-title-bar": "0.0.2",
     "@nodegui/react-nodegui": "^0.6.1",
-    "@nodegui/plugin-title-bar": "^0.0.2",
     "NeteaseCloudMusicApi": "^3.25.4",
     "cra-template-react-nodegui": "0.0.3",
     "mobx": "^5.15.4",
@@ -34,7 +34,7 @@
     "build": "webpack -p",
     "test": "echo 'Testing is comming soon...'",
     "dev": "webpack --mode=development",
-    "package": "npm run build && nodegui-packer --pack ./dist"
+    "package": "npm run build && nodegui-packer --pack ./dist && node ./build/post-release.js"
   },
   "eslintConfig": {
     "extends": "react-app"
