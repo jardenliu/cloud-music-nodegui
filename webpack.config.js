@@ -3,8 +3,6 @@ const webpack = require('webpack')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-const resolve = (...paths) => path.resolve(__dirname, ...paths)
-
 module.exports = (env, argv) => {
   const config = {
     mode: 'production',
@@ -13,10 +11,6 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: 'index.js'
-    },
-    node: {
-      __dirname: true,
-      __filename: true
     },
     module: {
       rules: [
@@ -29,27 +23,30 @@ module.exports = (env, argv) => {
           }
         },
         {
-          test: /\.(png|jpe?g|gif|svg|bmp)$/i,
-          use: [{ loader: 'file-loader' }]
+          test: /\.(png|jpe?g|gif|svg|bmp|otf|ttf)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: { publicPath: 'dist' }
+            }
+          ]
         },
         {
           test: /\.node/i,
           use: [
             {
               loader: 'native-addon-loader',
-              options: {
-                name: '[name]-[hash].[ext]'
-              }
+              options: { name: '[name]-[hash].[ext]' }
             }
           ]
         }
       ]
     },
-    plugins: [],
+    plugins: [new CleanWebpackPlugin()],
     resolve: {
-      modules: [resolve('src'), resolve('node_modules')],
+      modules: [path.resolve('src'), path.resolve('node_modules')],
       alias: {
-        assets: resolve('assets')
+        assets: path.resolve('assets')
       },
       extensions: ['.tsx', '.ts', '.js', '.jsx', '.json']
     }
@@ -64,8 +61,5 @@ module.exports = (env, argv) => {
     config.entry.unshift('webpack/hot/poll?100')
   }
 
-  if (argv.p) {
-    config.plugins.push(new CleanWebpackPlugin())
-  }
   return config
 }

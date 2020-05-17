@@ -10,13 +10,14 @@ import {
 } from '@nodegui/nodegui'
 import path from 'path'
 import nodeguiIcon from 'assets/nodegui.jpg'
+import iconfont from 'assets/iconfont.ttf'
 import HomePage from 'pages/home'
 import { isMac } from 'utils/OS'
 import { create, createSheet } from 'utils/style'
 import { setTitleBarStyle } from '@nodegui/plugin-title-bar'
 
 const minSize = { width: 1000, height: 670 }
-const winIcon = new QIcon(path.resolve(__dirname, nodeguiIcon))
+const winIcon = new QIcon(path.resolve(nodeguiIcon))
 
 class App extends React.Component {
   private readonly ref: React.RefObject<QMainWindow>
@@ -24,7 +25,7 @@ class App extends React.Component {
   constructor(props: any) {
     super(props)
     this.ref = React.createRef<QMainWindow>()
-    QFontDatabase.addApplicationFont('assets/iconfont.ttf')
+    QFontDatabase.addApplicationFont(path.resolve(iconfont))
   }
   render() {
     return (
