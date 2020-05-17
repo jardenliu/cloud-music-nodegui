@@ -3,4 +3,4 @@ dist/
 *.lognode_modules/
 coverage/
 .DS_Store
-deploy/
+deploy/**/build

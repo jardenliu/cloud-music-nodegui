@@ -33,7 +33,8 @@
     "start": "qode --inspect ./dist/index.js",
     "build": "webpack -p",
     "test": "echo 'Testing is comming soon...'",
-    "dev": "webpack --mode=development"
+    "dev": "webpack --mode=development",
+    "package": "npm run build && nodegui-packer --pack ./dist"
   },
   "eslintConfig": {
     "extends": "react-app"

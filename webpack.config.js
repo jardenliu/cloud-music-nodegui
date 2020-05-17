@@ -1,3 +1,4 @@
+const os = require('os')
 const path = require('path')
 const webpack = require('webpack')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
@@ -46,7 +47,11 @@ module.exports = (env, argv) => {
     resolve: {
       modules: [path.resolve('src'), path.resolve('node_modules')],
       alias: {
-        assets: path.resolve('assets')
+        assets: path.resolve('assets'),
+        '@nodegui/plugin-title-bar':
+          os.platform() === 'darwin'
+            ? '@nodegui/plugin-title-bar'
+            : path.resolve('build/noop.js')
       },
       extensions: ['.tsx', '.ts', '.js', '.jsx', '.json']
     }
