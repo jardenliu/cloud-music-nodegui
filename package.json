@@ -7,6 +7,7 @@
     "@nodegui/plugin-title-bar": "0.0.2",
     "@nodegui/react-nodegui": "^0.6.1",
     "NeteaseCloudMusicApi": "^3.25.4",
+    "bestzip": "^2.1.5",
     "cra-template-react-nodegui": "0.0.3",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.1",

@@ -4,3 +4,5 @@ dist/
 coverage/
 .DS_Store
 deploy/**/build
+cloud-music-*-release.zip
+*.AppImage

@@ -1,0 +1,67 @@
+name: build/release
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [13.x]
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        include:
+          - os: macos-latest
+            platform: darwin
+            assets: cloud-music-darwin-release.zip:cloud-music-darwin-release.zip:application/zip
+          - os: ubuntu-latest
+            platform: linux
+            assets: >
+              cloud-music-linux-release.zip:cloud-music-linux-release.zip:application/zip
+              Application-x86_64.AppImage:Application-x86_64.AppImage:application/x-appimage
+          - os: windows-latest
+            platform: win32
+            assets: cloud-music-win32-release.zip:cloud-music-win32-release.zip:application/zip
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: install build deps[linux]
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt install pkg-config build-essential mesa-common-dev libglu1-mesa-dev libxkbcommon-x11-0
+      - name: Add msbuild to PATH
+        if: matrix.os == 'windows-latest'
+        uses: microsoft/setup-msbuild@v1.0.0
+        with:
+          vs-version: 16.5
+
+      - name: setup-cmake[macos, windows]
+        if: matrix.os != 'ubuntu-latest'
+        uses: jwlawson/actions-setup-cmake@v1.0
+        with:
+          cmake-version: '3.16.x'
+          github-api-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install deps
+        run: npm install
+
+      - name: Package
+        run: npm run package
+
+      - name: create release
+        uses: jardenliu/create-release@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          code: v0.0.0-latest-master
+          name: Latest Master Release
+          recreate: true
+          body: >
+            Latest auto release corresponding to commit ${{github.sha}} 🔥.
+          assets: ${{matrix.assets}}
