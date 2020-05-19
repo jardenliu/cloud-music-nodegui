@@ -41,7 +41,7 @@ const main = async () => {
   }
 
   if (platform === 'linux') {
-    fs.readFileSync(
+    fs.renameSync(
       path.resolve(target, AppImageName),
       `${rootPath}/${AppImageName}`
     )
