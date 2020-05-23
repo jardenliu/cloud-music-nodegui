@@ -15,6 +15,7 @@ import HomePage from 'pages/home'
 import { isMac } from 'utils/OS'
 import { create, createSheet } from 'utils/style'
 import { setTitleBarStyle } from '@nodegui/plugin-title-bar'
+import WindowResize from 'plugin/resize'
 
 const minSize = { width: 1000, height: 670 }
 const winIcon = new QIcon(path.resolve(nodeguiIcon))
@@ -50,6 +51,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    new WindowResize(this.ref.current!)
     if (isMac) {
       setTitleBarStyle(
         ((this.ref.current as unknown) as { native: NativeElement }).native,

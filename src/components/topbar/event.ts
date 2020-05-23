@@ -17,6 +17,8 @@ export default function TopbarEvent(store: Store, props: IProps) {
 
   const dragMove = (e: NativeElement | undefined) => {
     const { current } = props.window
+    if (current?.isResizing) return
+
     if (!e || !current || !state.isDragging) return
     const event = new QMouseEvent(e)
     const windowState = current.windowState()
