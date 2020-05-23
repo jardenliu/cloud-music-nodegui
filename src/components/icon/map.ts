@@ -1,5 +1,6 @@
 export default {
-  close: '\ue619',
-  remove: '\ue61a',
-  expand: '\ue659'
+  remove: '\ue6ef',
+  square: '\ue6f0',
+  close: '\ue70b',
+  minimize: '\uea6b'
 }
