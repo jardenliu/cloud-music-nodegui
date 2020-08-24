@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@nodegui/nodegui": "https://github.com/nodegui/nodegui/releases/download/v0.0.0-latest-master/nodegui-master.tgz",
+    "@nodegui/nodegui": "0.24.0",
     "@nodegui/plugin-title-bar": "0.0.2",
     "@nodegui/react-nodegui": "^0.6.1",
     "NeteaseCloudMusicApi": "^3.25.4",
     "bestzip": "^2.1.5",
-    "cra-template-react-nodegui": "0.0.3",
     "ionicons": "^5.0.1",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.1",
@@ -35,7 +34,8 @@
     "start": "qode --inspect ./dist/index.js",
     "build": "webpack -p",
     "test": "echo 'Testing is comming soon...'",
-    "dev": "webpack --mode=development",
+    "web": "webpack --mode=development",
+    "dev": "node ./build/dev",
     "package": "npm run build && nodegui-packer --pack ./dist && node ./build/post-release.js"
   },
   "eslintConfig": {
@@ -68,6 +68,7 @@
     "lint-staged": "^10.1.2",
     "native-addon-loader": "^2.0.1",
     "prettier": "^2.0.4",
+    "rimraf": "^3.0.2",
     "typescript": "^3.8.3",
     "webpack-cli": "^3.3.11"
   }

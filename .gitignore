@@ -6,3 +6,4 @@ coverage/
 deploy/**/build
 cloud-music-*-release.zip
 *.AppImage
+package-lock.json
