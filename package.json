@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.8.3",
-    "@commitlint/cli": "^8.3.5",
+    "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^8.3.4",
     "@nodegui/devtools": "^1.0.1",
     "@nodegui/packer": "^1.4.0",
