@@ -6,7 +6,7 @@
     "@nodegui/nodegui": "0.24.0",
     "@nodegui/plugin-title-bar": "0.0.2",
     "@nodegui/react-nodegui": "^0.6.1",
-    "NeteaseCloudMusicApi": "^3.25.4",
+    "NeteaseCloudMusicApi": "^3.47.5",
     "bestzip": "^2.1.5",
     "ionicons": "^5.0.1",
     "mobx": "^5.15.4",
@@ -14,7 +14,7 @@
     "node-os-utils": "^1.2.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "5.0.1"
   },
   "husky": {
     "hooks": {
